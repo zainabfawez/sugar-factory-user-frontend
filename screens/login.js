@@ -1,6 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
-import {StyleSheet, Text, View, TextInput, TouchableOpacity } from "react-native";
+import {StyleSheet, Text, View, TextInput, TouchableOpacity, TouchableWithoutFeedback, Keyboard } from "react-native";
 
 
  
@@ -16,6 +16,9 @@ export default function login( { navigation } ) {
  
  
   return (
+    <TouchableWithoutFeedback onPress={()=> {
+      Keyboard.dismiss();
+    }}>
     <View style={styles.container}>
       
  
@@ -48,6 +51,7 @@ export default function login( { navigation } ) {
         <Text style={styles.loginText} onPress= { pressLogin } >login</Text>
       </TouchableOpacity>
     </View>
+    </TouchableWithoutFeedback>
   );
 }
 
