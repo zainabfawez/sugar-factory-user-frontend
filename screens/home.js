@@ -6,18 +6,9 @@ import {StyleSheet, Text, View, TextInput, TouchableOpacity } from "react-native
 export default function home() {
     
 
-   
     return (
-      <View style={styles.container}>
-        
-   
-        <StatusBar style="auto" />
-        <View style={styles.inputView}>
-            <text> this is home</text>
-        </View>
-   
-       
-       
+      <View> 
+        <Text> this is home</Text>
       </View>
     );
   }

@@ -1,6 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
-import {StyleSheet, Text, View, TextInput, TouchableOpacity } from "react-native";
+import {StyleSheet, Text, View, TextInput, TouchableOpacity, Alert } from "react-native";
 
 
  
@@ -9,10 +9,9 @@ export default function login( { navigation } ) {
   const [password, setPassword] = useState("");
   const pressHandler = () => {
      navigation.navigate('signup');
-  };
+  }; 
   const pressLogin = () => {
-    navigation.navigate('home');
- };
+  navigation.navigate('home');};
  
  
   return (
@@ -44,13 +43,13 @@ export default function login( { navigation } ) {
         <Text onPress = { pressHandler }> signup here </Text>
       </TouchableOpacity>
  
-      <TouchableOpacity style={styles.loginBtn}>
-        <Text style={styles.loginText} onPress= { pressLogin } >login</Text>
+      <TouchableOpacity style={styles.loginBtn} onPress = {pressLogin} >
+        <Text style={styles.loginText}>login</Text>
       </TouchableOpacity>
     </View>
   );
 }
-
+ 
 
  
 const styles = StyleSheet.create({
