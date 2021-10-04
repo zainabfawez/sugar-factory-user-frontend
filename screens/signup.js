@@ -4,11 +4,11 @@ import {StyleSheet, Text, View, TextInput, TouchableOpacity } from "react-native
  
 export default function signUp() {
 
-  const [first_name, setName] = useState({ value: '' })
-  const [last_name, setName] = useState({ value: ''})
+  const [first_name, setFirstName] = useState({ value: '' })
+  const [last_name, setLastName] = useState({ value: ''})
   const [email, setEmail] = useState({ value: ''})
   const [password, setPassword] = useState({ value: ''})
-  const [confirmPassword, setcPassword] = useState({ value: ''})
+  const [confirmPassword, setConfirmPassword] = useState({ value: ''})
  
   return (
     <View style={styles.container}>
@@ -20,7 +20,7 @@ export default function signUp() {
           style={styles.TextInput}
           placeholder="First Name"
           placeholderTextColor="#003f5c"
-          onChangeText={(first_name) => setEmail(first_name)}
+          onChangeText={(first_name) => setFirstName(first_name)}
         />
       </View>
 
@@ -29,7 +29,7 @@ export default function signUp() {
           style={styles.TextInput}
           placeholder="Last Name"
           placeholderTextColor="#003f5c"
-          onChangeText={(last_name) => setEmail(last_name)}
+          onChangeText={(last_name) => setLastName(last_name)}
         />
       </View>
 
