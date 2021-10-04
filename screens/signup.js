@@ -1,6 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
-import {StyleSheet, Text, View, TextInput, TouchableOpacity } from "react-native";
+import {StyleSheet, Text, View, TextInput, TouchableOpacity, TouchableWithoutFeedback, Keyboard } from "react-native";
  
 export default function signUp() {
 
@@ -8,12 +8,14 @@ export default function signUp() {
   const [last_name, setLastName] = useState({ value: ''})
   const [email, setEmail] = useState({ value: ''})
   const [password, setPassword] = useState({ value: ''})
-  const [confirmPassword, setcPassword] = useState({ value: ''})
+  const [confirmPassword, setConfirmPassword] = useState({ value: ''})
  
   return (
+    <TouchableWithoutFeedback onPress={()=> {
+      Keyboard.dismiss();
+    }}>
+
     <View style={styles.container}>
-      
- 
       <StatusBar style="auto" />
       <View style={styles.inputView}>
         <TextInput
@@ -39,7 +41,6 @@ export default function signUp() {
           placeholder="Email."
           placeholderTextColor="#003f5c"
           onChangeText={(email) => setEmail(email)}
-         
         />
       </View>
  
@@ -63,11 +64,11 @@ export default function signUp() {
         />
       </View>
  
- 
       <TouchableOpacity style={styles.loginBtn}>
         <Text style={styles.loginText}>sign up</Text>
       </TouchableOpacity>
     </View>
+    </TouchableWithoutFeedback>
   );
 }
 
