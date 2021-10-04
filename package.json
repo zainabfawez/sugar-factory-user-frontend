@@ -10,8 +10,10 @@
   "dependencies": {
     "@react-native-community/masked-view": "0.1.10",
     "@react-navigation/drawer": "^6.1.6",
+    "@react-navigation/material-bottom-tabs": "^6.0.7",
     "@react-navigation/native": "^6.0.4",
     "@react-navigation/stack": "^6.0.9",
+    "axios": "^0.22.0",
     "expo": "~42.0.1",
     "expo-status-bar": "~1.0.4",
     "react": "16.13.1",
@@ -23,7 +25,8 @@
     "react-native-screens": "~3.4.0",
     "react-native-web": "~0.13.12",
     "react-navigation": "^4.4.4",
-    "react-navigation-stack": "^2.10.4"
+    "react-navigation-stack": "^2.10.4",
+    "undefined": "@expo/vector-icons/AntDesign"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0"

@@ -1,40 +1,37 @@
 import { StatusBar } from "expo-status-bar";
-import React, { useState } from "react";
-import {StyleSheet, Text, View, TextInput, TouchableOpacity, TouchableWithoutFeedback, Keyboard } from "react-native";
- 
-export default function signUp() {
+import React, { useState, useEffect } from "react";
+import {StyleSheet, Text, View, TextInput, TouchableOpacity, TouchableWithoutFeedback, Keyboard, Image, Alert } from "react-native";
+import main from '../../assets/main.png'; 
+import axios from 'axios';
 
-  const [first_name, setFirstName] = useState({ value: '' })
-  const [last_name, setLastName] = useState({ value: ''})
-  const [email, setEmail] = useState({ value: ''})
-  const [password, setPassword] = useState({ value: ''})
-  const [confirmPassword, setConfirmPassword] = useState({ value: ''})
- 
+export default function login( { navigation } ) {
+  const [email, setEmail] = useState(null);
+  const [password, setPassword] = useState(null);
+
+  // useEffect(() =>{
+  //   console.log("component")
+  //   return console.log("met")
+  //  })
+  
+  const handleLoggin = async () => {
+    await axios.post("api", {password : {password}, email :email})
+      .then((response) =>  (console.log(response.data)
+        //if radetle token -> navifate to bottomtab
+        //else alert wrong credentials)) 
+  };
+
   return (
     <TouchableWithoutFeedback onPress={()=> {
       Keyboard.dismiss();
     }}>
-
     <View style={styles.container}>
+      
+ 
       <StatusBar style="auto" />
-      <View style={styles.inputView}>
-        <TextInput
-          style={styles.TextInput}
-          placeholder="First Name"
-          placeholderTextColor="#003f5c"
-          onChangeText={(first_name) => setFirstName(first_name)}
-        />
-      </View>
-
-      <View style={styles.inputView}>
-        <TextInput
-          style={styles.TextInput}
-          placeholder="Last Name"
-          placeholderTextColor="#003f5c"
-          onChangeText={(last_name) => setLastname(last_name)}
-        />
-      </View>
-
+      <Image
+        style = {{width: 300, height: 300}}
+        source={main}
+      />
       <View style={styles.inputView}>
         <TextInput
           style={styles.TextInput}
@@ -53,25 +50,20 @@ export default function signUp() {
           onChangeText={(password) => setPassword(password)}
         />
       </View>
-
-      <View style={styles.inputView}>
-        <TextInput
-          style={styles.TextInput}
-          placeholder="Confirm Password."
-          placeholderTextColor="#003f5c"
-          secureTextEntry={true}
-          onChangeText={(ConfirmPassword) => setConfirmPassword(confirmPassword)}
-        />
-      </View>
  
-      <TouchableOpacity style={styles.loginBtn}>
-        <Text style={styles.loginText}>sign up</Text>
+      <TouchableOpacity style={styles.loginBtn} onPress = {handleLoggin} >
+        <Text style={styles.loginText}>login</Text>
       </TouchableOpacity>
+      <View style={styles.register}>
+        <Text>New to sugar factory?</Text>
+        <TouchableWithoutFeedback onPress={()=>{navigation.navigate('Signup')}}>
+          <Text style={styles.registerLink}> Register now!</Text>
+        </TouchableWithoutFeedback>
+      </View>
     </View>
     </TouchableWithoutFeedback>
   );
 }
-
 
  
 const styles = StyleSheet.create({
@@ -79,7 +71,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
     alignItems: "center",
-    justifyContent: "center",
   },
  
   image: {
@@ -117,4 +108,14 @@ const styles = StyleSheet.create({
     marginTop: 40,
     backgroundColor: "#FF1493",
   },
+
+  register: {
+    marginTop: 10,
+    display: "flex",
+    flexDirection: "row"
+  },
+  registerLink: {
+    color: "blue",
+    fontStyle: 'italic',
+  }
 });

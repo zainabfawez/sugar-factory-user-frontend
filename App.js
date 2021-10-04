@@ -1,12 +1,36 @@
 import 'react-native-gesture-handler';
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
-import Navigator from './routes/loginStack';
- 
-export default function App() {
- 
-  return (
-     <Navigator />
-  );
-}
+import { Button, View } from 'react-native';
+import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import BottomTab from './src/tabs/bottomTab';
+import login from './src/screens/login'
+import signup from './src/screens/signup';
 
+const MyTheme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    primary: 'white',
+  },
+};
+ 
+
+export default function App() {
+  const Stack = createStackNavigator();
+	return(
+    <NavigationContainer theme={MyTheme}>
+			
+    <Stack.Navigator initialRouteName = "Login">
+      <Stack.Screen name="Login" component={login} />
+      <Stack.Screen name="Signup" component={signup} />
+      <Stack.Screen name="BottomTab" 
+          component={BottomTab}
+          options={{
+            title:""
+          }}/>
+
+    </Stack.Navigator>
+    </NavigationContainer>
+	)}

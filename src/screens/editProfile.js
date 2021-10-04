@@ -8,11 +8,11 @@ export default function editProfile() {
 
    
     return (
-      <View style={styles.container}>
+      <View>
         
    
         <StatusBar style="auto" />
-        <View style={styles.inputView}>
+        <View>
             <text> this is editProfile</text>
         </View>
    

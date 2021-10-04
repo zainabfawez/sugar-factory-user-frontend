@@ -10,11 +10,11 @@ export default function home() {
         <TouchableWithoutFeedback onPress={()=> {
           Keyboard.dismiss();
         }}>
-        <View style={styles.container}>
+        <View>
     
           <StatusBar style="auto" />
-          <View style={styles.inputView}>
-              <text> this is home</text>
+          <View>
+              <Text> this is home</Text>
           </View>
         </View>
       </TouchableWithoutFeedback>
