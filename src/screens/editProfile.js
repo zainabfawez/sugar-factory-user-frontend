@@ -19,5 +19,7 @@ export default function editProfile() {
        
       </View>
     );
+
+    
   }
   

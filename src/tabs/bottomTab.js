@@ -4,11 +4,12 @@ import { FontAwesome } from '@expo/vector-icons';
 import Icon from '@expo/vector-icons/AntDesign';
 import { AntDesign } from '@expo/vector-icons'; 
 import { Ionicons } from '@expo/vector-icons'; 
+import { Header } from '@react-navigation/elements';
 import home from '../screens/home'
 import search from '../screens/search';
 import notifications from '../screens/notifications';
 import messages from '../screens/messages';
-import profile from '../screens/profile';
+import editProfile from '../screens/editProfile';
 
 
 
@@ -23,10 +24,10 @@ export default function BottomTab(){
 				name="Home"
 				component={home}
 				options={{
-				tabBarLabel: 'home',
-				tabBarIcon: () => (
-					<FontAwesome name="home" size={24} color="black" />
-				),
+					tabBarLabel: 'home',
+					tabBarIcon: () => (
+						<FontAwesome name="home" size={24} color="black" />
+					),
 				}}
 			/>
 
@@ -34,6 +35,7 @@ export default function BottomTab(){
 				name="search"
 				component={search}
 				options={{
+					
 					tabBarLabel: 'search',
 					tabBarIcon: () => (
 						<Icon name="search1" size={24} color="black" />
@@ -64,19 +66,15 @@ export default function BottomTab(){
 			/>
 
 			<Tab.Screen
-				name="profile"
+				name="editProfile"
 				component={profile}
 				options={{
-					tabBarLabel: 'Profile',
+					tabBarLabel: 'editProfile',
 					tabBarIcon: () => (
-						<AntDesign name="profile" size={24} color="black" />
+						<AntDesign name="editProfile" size={24} color="black" />
 					),
 				}}
 			/>
-
-
-
-
 		</Tab.Navigator>
 	);
 

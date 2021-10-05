@@ -42,8 +42,8 @@ export default function login( { navigation } ) {
       <View style={styles.inputView}>
         <TextInput
           style={styles.TextInput}
-          placeholder="Email."
-          placeholderTextColor="#003f5c"
+          placeholder="Email"
+          placeholderTextColor="grey"
           onChangeText={(email) => setEmail(email)}
         />
       </View>
@@ -51,8 +51,8 @@ export default function login( { navigation } ) {
       <View style={styles.inputView}>
         <TextInput
           style={styles.TextInput}
-          placeholder="Password."
-          placeholderTextColor="#003f5c"
+          placeholder="Password"
+          placeholderTextColor="grey"
           secureTextEntry={true}
           onChangeText={(password) => setPassword(password)}
         />
@@ -85,13 +85,13 @@ const styles = StyleSheet.create({
   },
  
   inputView: {
-    backgroundColor: "#FFC0CB",
+    backgroundColor: "#fff",
     borderRadius: 30,
+    borderColor : "#FFC0CB",
+    borderWidth : 1,
     width: "70%",
     height: 45,
     marginBottom: 20,
- 
-    alignItems: "center",
   },
  
   TextInput: {
@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     marginTop: 40,
-    backgroundColor: "#FF1493",
+    backgroundColor: "skyblue",
   },
 
   register: {
