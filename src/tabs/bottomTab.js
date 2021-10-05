@@ -71,7 +71,7 @@ export default function BottomTab(){
 				options={{
 					tabBarLabel: 'editProfile',
 					tabBarIcon: () => (
-						<AntDesign name="editProfile" size={24} color="black" />
+						<AntDesign name="profile" size={24} color="black" />
 					),
 				}}
 			/>
