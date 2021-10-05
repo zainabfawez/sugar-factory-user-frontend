@@ -26,10 +26,10 @@ export default function home() {
         }}>
         <View>
           <StatusBar style="auto" />
-          <Image
+          {/* <Image
             style = {{width: 300, height: 300}}
             source={main}
-        />
+        /> */}
 
           <View>
               <Text> this is home { token }</Text>

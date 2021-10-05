@@ -67,7 +67,7 @@ export default function BottomTab(){
 
 			<Tab.Screen
 				name="editProfile"
-				component={profile}
+				component={editProfile}
 				options={{
 					tabBarLabel: 'editProfile',
 					tabBarIcon: () => (
