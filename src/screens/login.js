@@ -3,21 +3,23 @@ import React, { useState, useEffect } from "react";
 import {StyleSheet, Text, View, TextInput, TouchableOpacity, TouchableWithoutFeedback, Keyboard, Image, Alert } from "react-native";
 import main from '../../assets/main.png'; 
 import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function login( { navigation } ) {
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
 
-  // useEffect(() =>{
-  //   console.log("component")
-  //   return console.log("met")
-  //  })
-  
-  const handleLoggin = async () => {
-    await axios.post("api", {password : {password}, email :email})
-      .then((response) =>  (console.log(response.data)
-        //if radetle token -> navifate to bottomtab
-        //else alert wrong credentials)) 
+  const pressLogin = async () => {
+    try {
+      const res = await  axios.post('http://192.168.1.108:8001/api/login', {
+        "email" : email,
+        "password":password
+      });
+      await AsyncStorage.setItem('@storage_Key', res.data['access_token']);
+      navigation.navigate('BottomTab');
+    } catch(err) {
+      console.log(err);
+  }
   };
 
   return (
@@ -51,7 +53,7 @@ export default function login( { navigation } ) {
         />
       </View>
  
-      <TouchableOpacity style={styles.loginBtn} onPress = {handleLoggin} >
+      <TouchableOpacity style={styles.loginBtn} onPress = {pressLogin} >
         <Text style={styles.loginText}>login</Text>
       </TouchableOpacity>
       <View style={styles.register}>

@@ -13,7 +13,7 @@ export default function editProfile() {
    
         <StatusBar style="auto" />
         <View>
-            <text> this is editProfile</text>
+            <Text> this is editProfile</Text>
         </View>
    
        

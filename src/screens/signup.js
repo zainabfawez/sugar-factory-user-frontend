@@ -31,7 +31,7 @@ export default function signup() {
           style={styles.TextInput}
           placeholder="Last Name"
           placeholderTextColor="#003f5c"
-          onChangeText={(last_name) => setLastname(last_name)}
+          onChangeText={(last_name) => setLastName(last_name)}
         />
       </View>
 
