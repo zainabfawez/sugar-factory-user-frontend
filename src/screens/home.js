@@ -1,7 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState, useEffect } from "react";
 import {StyleSheet, Text, View, TextInput, TouchableOpacity, TouchableWithoutFeedback, Image } from "react-native";
-//import profilepic from '../../assets/profilepic.png'; 
+import profilePic from '../../assets/profilePic.png'; 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function home() {
@@ -26,11 +26,13 @@ export default function home() {
         }}>
         <View>
           <StatusBar style="auto" />
-          {/* <Image
-            style = {{width: 300, height: 300}}
-            source={main}
-        /> */}
-
+          <View style={styles.top}>
+            <Image
+              style={{width: 135, height: 135, borderRadius: 400/ 2}} 
+              source={profilePic}
+            />
+            <Text  > Full Name </Text>
+          </View>
           <View>
               <Text> this is home { token }</Text>
           </View>
@@ -39,5 +41,16 @@ export default function home() {
     );
   }
   
+  const styles = StyleSheet.create({
+
+    top: {
+      marginTop: 10,
+      display: "flex",
+      flexDirection: "row"
+    },
+
+   
+
+  });
   
   
