@@ -8,6 +8,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 export default function login( { navigation } ) {
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
+  const [bad_credentials, setidBadCredentials] = useState(null);
 
   const pressLogin = async () => {
     try {
@@ -16,8 +17,10 @@ export default function login( { navigation } ) {
         "password":password
       });
       await AsyncStorage.setItem('@storage_Key', res.data['access_token']);
+      setidBadCredentials(null);
       navigation.navigate('BottomTab');
     } catch(err) {
+      setidBadCredentials(1);
       console.log(err);
   }
   };
@@ -34,6 +37,8 @@ export default function login( { navigation } ) {
         style = {{width: 300, height: 300}}
         source={main}
       />
+        <Text>{bad_credentials && "Bad Credentials"}</Text>
+
       <View style={styles.inputView}>
         <TextInput
           style={styles.TextInput}
