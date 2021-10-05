@@ -47,6 +47,7 @@ export default function home() {
       marginTop: 10,
       display: "flex",
       flexDirection: "row"
+      
     },
 
    
