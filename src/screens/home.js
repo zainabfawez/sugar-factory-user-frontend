@@ -12,6 +12,7 @@ export default function home({ navigation }) {
   const [bio, setBio] = useState(null);
   const [image, setImage] = useState(null);
 
+  
 
   const getData = async () => {
     try {

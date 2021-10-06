@@ -3,8 +3,14 @@ import React, { useState, useEffect } from "react";
 import {StyleSheet, Text, View, TextInput, TouchableOpacity, TouchableWithoutFeedback, Image } from "react-native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
-import { RadioButton } from 'react-native-paper';
 import BASE_API_URL from '../services/api/BaseUrl';
+// import girl4 from '../../assets/girl4.png';
+import { Entypo } from '@expo/vector-icons'; 
+import { MaterialIcons } from '@expo/vector-icons'; 
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { FontDisplay } from "expo-font";
+import { FontAwesome } from '@expo/vector-icons'; 
+import { FontAwesome5 } from '@expo/vector-icons';
 
 
 
@@ -33,6 +39,7 @@ export default function profile({route, navigation }) {
 
     const onFav = async (id) =>{
       // navigation.navigate('Home');
+      
       try {
         const rest = await  axios.post(`${BASE_API_URL}/api/user/add-favorite`, 
         {
@@ -48,31 +55,74 @@ export default function profile({route, navigation }) {
       } catch(e) {
         console.log(e);
         console.log("e");
-
       }
-
-
     }
-
     useEffect(() => {
         getData();
         }, [])
-    
+
+  
     return(
              <View style={styles.searchResult}  >
-            {userData &&<Image
-              style={{width: 90, height: 90, borderRadius: 400/ 2}} 
-              source={{uri : `http://192.168.1.108:8000${userData.p_path}`}}
-            />}
-            <View style={styles.searchInfo}>
-              {userData && <Text style={styles.coverName}>{userData.first_name} {userData.last_name}</Text>}
-              {userData &&<Text style={styles.text}>Has: {userData.net_worth}  {userData.currency} </Text>}
-            </View>
-            <TouchableOpacity style={styles.Btn}  >
-                <Text style={styles.btnText} onPress={()=> onFav(userData.id)}>Favorite </Text>
-            </TouchableOpacity>
+               <View style={styles.row}>
 
-         
+                 <View>
+                  {/* <Image style= {styles.imgStyle} source={girl4} /> */}
+                  
+                  {userData &&<Image
+                    style={{width: 90, height: 90, borderRadius: 400/ 2}} 
+                    source={{uri : `http://192.168.1.108:8000${userData.p_path}`}}
+                  />}
+                  <TouchableOpacity style={styles.Btn}  >
+                      <Text style={styles.btnText} onPress={()=> onFav(userData.id)}>Favorite </Text>
+                    </TouchableOpacity>
+                 </View>
+              
+                <View >
+
+                  {userData && <Text style={styles.coverName}>{userData.first_name} {userData.last_name}</Text>}
+                  <MaterialCommunityIcons name="bio" size={35} color="black" />
+                  <View style={{flexGrow: 1, flexDirection: 'row'}}>
+                    {userData && <Text style={styles.bio}>{userData.bio}</Text>}  
+                  </View>
+                    
+                </View>
+                
+              </View>
+
+              <View style={{marginStart: 15}}>
+
+                <View style={styles.row} >
+                  <Entypo name="email" size={30} color="black" />
+                  <Text>   </Text>
+                  {userData && <Text style= {styles.text}>{userData.email}</Text>}
+                </View>
+              
+                <View style={styles.row} >
+                  <MaterialIcons name="attach-money" size={30} color="black" />
+                  <Text>   </Text>
+                  {userData && <Text style= {styles.text}>{userData.net_worth} {userData.currency}</Text>}
+                </View>
+
+                <View style={styles.row} >
+                  <FontAwesome name="flag" size={30} color="black" />
+                  <Text>    </Text>
+                  {userData && <Text style= {styles.text}>{userData.nationality}</Text>}
+                </View>
+
+                <View style={styles.row} >
+                  <MaterialCommunityIcons name="human-male-height" size={30} color="black" />
+                  <Text>  </Text>
+                  {userData && <Text style= {styles.text}>{userData.height}</Text>}
+                  <Text style= {styles.text}>  m. </Text>
+                  <Text>         </Text>
+                  <FontAwesome5 name="weight" size={24} color="black" />
+                  <Text>  </Text>
+                  {userData && <Text style= {styles.text}>{userData.weight}</Text>}
+                  <Text style= {styles.text}>  Kg. </Text>
+                </View>
+
+              </View>
           </View>
 
     );
@@ -82,14 +132,28 @@ export default function profile({route, navigation }) {
 const styles = StyleSheet.create({
 
     searchResult: {
-      marginTop: 10,
+     
+      flex : 1,
+      flexDirection: "column",
+      backgroundColor: "#fff",
+      paddingRight: 15,
       display: "flex",
-      flexDirection: "row",
-      justifyContent:'space-between',
+      //flexDirection: "row",
+      //justifyContent:'space-between',
       marginBottom: 15,
+      paddingRight: 40,
 
     },
 
+  
+    imgStyle:{
+      height: 150,
+      width: 150,
+      borderRadius: 250,
+      margin: "5%",
+    },
+
+  
     searchInfo:{
       flexDirection: "column",
       display: "flex",
@@ -98,29 +162,50 @@ const styles = StyleSheet.create({
     },
 
     text: {
-      justifyContent: "center",
-      padding: 10
+      fontSize: 20,
+      // fontFamily: 'sans-serif',
+    
     },
       
   Btn: {
-    width: "33%",
-    borderRadius: 500/2,
-    height: 50,
+   
+    width: "100%",
+    borderRadius: 25,
+    height: 30,
     alignItems: "center",
     justifyContent: "center",
-    marginTop: 40,
+    marginTop: 60,
     backgroundColor: "#FFC0CB",
+    marginStart: 15,
   },
 
   btnText: {
-      color: "#fff"
+      color: "#fff",
+      fontSize: 25,
   },
   coverName: {
     color: 'black',
-    fontSize: 28,
+    fontSize: 25,
     fontWeight: 'bold',
-    paddingBottom: 2,
+    marginTop: 30,
+    marginBottom: 15,
+    // fontFamily: 'serif'
   },
+
+  row: {
+    flexDirection: "row",
+    margin: 10,
+  },
+
+  bio: {
+    flex: 1, 
+    width: 1,
+    fontSize: 15,
+    fontStyle: 'italic',
+    //margin: 15,
+
+  }
+
   
 });
 

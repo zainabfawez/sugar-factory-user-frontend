@@ -19,6 +19,8 @@ export default function BottomTab( { navigation }){
 
 	const Tab = createMaterialBottomTabNavigator();
 
+	
+
 	return (
 		<Tab.Navigator>
 			

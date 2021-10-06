@@ -24,6 +24,10 @@ export default function login( { navigation } ) {
       await AsyncStorage.setItem('@image', res.data['user']['p_path']);
       setidBadCredentials(null);
       navigation.navigate('BottomTab');
+      navigation.reset({
+        index: 0,
+        routes: [{ name: 'BottomTab' }],
+        });
     } catch(err) {
       setidBadCredentials(1);
       console.log(err);

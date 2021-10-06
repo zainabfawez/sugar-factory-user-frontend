@@ -1,5 +1,6 @@
 import React from "react";
 import {StyleSheet, Text, View, TextInput, TouchableOpacity, TouchableWithoutFeedback, Image } from "react-native";
+import BASE_API_URL from '../services/api/BaseUrl';
 
 
 //import profile from "../screens/profile";
@@ -20,7 +21,7 @@ export default function SearchResults(props) {
           <View style={styles.searchResult}  key={item.id}>
             <Image
               style={{width: 90, height: 90, borderRadius: 400/ 2}} 
-              source={{uri : `http://192.168.1.108:8000${item.p_path}`}}
+              source={{uri : `${BASE_API_URL}${item.p_path}`}}
             />
             <View style={styles.searchInfo}>
               <Text style={styles.text}> {item.first_name} {item.last_name} </Text>
