@@ -12,17 +12,20 @@ export default function login( { navigation } ) {
 
   const pressLogin = async () => {
     try {
-      const res = await  axios.post('http://192.168.1.106:8000/api/login', {
+      const res = await  axios.post('http://192.168.1.108:8000/api/login', {
         "email" : email,
         "password":password
       });
       await AsyncStorage.setItem('@storage_Key', res.data['access_token']);
+      await AsyncStorage.setItem('@Name', res.data['user']['first_name'] + ' ' + res.data['user']['last_name']);
+      await AsyncStorage.setItem('@bio', res.data['user']['bio']);
+      await AsyncStorage.setItem('@image', res.data['user']['p_path']);
       setidBadCredentials(null);
       navigation.navigate('BottomTab');
     } catch(err) {
       setidBadCredentials(1);
       console.log(err);
-  }
+    }
   };
 
   return (

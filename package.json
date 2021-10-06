@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^1.15.8",
+    "@react-native-community/datetimepicker": "^3.5.2",
     "@react-native-community/masked-view": "0.1.10",
     "@react-navigation/drawer": "^6.1.6",
     "@react-navigation/elements": "^1.1.2",
@@ -17,6 +18,7 @@
     "@react-navigation/stack": "^6.0.9",
     "axios": "^0.22.0",
     "expo": "~42.0.1",
+    "expo-font": "~9.2.1",
     "expo-status-bar": "~1.0.4",
     "react": "16.13.1",
     "react-dom": "16.13.1",
@@ -29,8 +31,7 @@
     "react-native-web": "~0.13.12",
     "react-navigation": "^4.4.4",
     "react-navigation-stack": "^2.10.4",
-    "undefined": "@expo/vector-icons/AntDesign",
-    "expo-font": "~9.2.1"
+    "undefined": "@expo/vector-icons/AntDesign"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0"

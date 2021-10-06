@@ -1,34 +1,37 @@
-import { StatusBar } from "expo-status-bar";
-import React, { useState, useEffect } from "react";
+import React from "react";
 import {StyleSheet, Text, View, TextInput, TouchableOpacity, TouchableWithoutFeedback, Image } from "react-native";
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import profilePic from '../../assets/profilePic.png'; 
+
 
 //import profile from "../screens/profile";
 
 
-export default function SearchResults({imgSource}, {fullName}) {
+export default function SearchResults(props) {
 
+  console.log(`http://192.168.1.108:8000`)
 
+  const goTo = (id)=>{
+    {props.goToUser(id)};
+  }
 
     return(
 
       <View>
-         
-          <View style={styles.searchResult}>
+         {props.data.map((item) => (
+          <View style={styles.searchResult}  key={item.id}>
             <Image
               style={{width: 90, height: 90, borderRadius: 400/ 2}} 
-              source={imgSource}
+              source={{uri : `http://192.168.1.108:8000${item.p_path}`}}
             />
             <View style={styles.searchInfo}>
-              <Text style={styles.text}> {fullName} </Text>
-              <Text style={styles.text}> Wealth + currency </Text>
+              <Text style={styles.text}> {item.first_name} {item.last_name} </Text>
+              <Text style={styles.text}>Has: {item.net_worth}  {item.currency} </Text>
             </View>
-            <TouchableOpacity style={styles.Btn}  onPress={()=>{navigation.navigate('profile')}}>
+            <TouchableOpacity style={styles.Btn}  onPress={()=> goTo(item.id)}>
                 <Text style={styles.btnText}>check profile </Text>
             </TouchableOpacity>
          
           </View>
+         ))}
       </View>
       
     );
@@ -36,10 +39,12 @@ export default function SearchResults({imgSource}, {fullName}) {
 const styles = StyleSheet.create({
 
     searchResult: {
+      alignItems: "center",
       marginTop: 10,
       display: "flex",
       flexDirection: "row",
       justifyContent:'space-between',
+      marginBottom: 15,
 
     },
 
@@ -57,17 +62,21 @@ const styles = StyleSheet.create({
       
   Btn: {
     width: "33%",
+    alignItems: "center",
     borderRadius: 500/2,
     height: 50,
     alignItems: "center",
     justifyContent: "center",
     marginTop: 40,
+    
+    marginBottom: 2,
     backgroundColor: "#FFC0CB",
   },
 
   btnText: {
       color: "#fff"
   },
+  
 });
 
 

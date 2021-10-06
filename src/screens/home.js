@@ -1,15 +1,19 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState, useEffect } from "react";
-import {StyleSheet, Text, View, TextInput, TouchableOpacity, TouchableWithoutFeedback, Image } from "react-native";
-import profilePic from '../../assets/profilePic.png'; 
+import {StyleSheet, Text, View, TextInput, TouchableOpacity, TouchableWithoutFeedback, Image, Keyboard } from "react-native";
+import sf from '../../assets/sf.png'; 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function home() {
-  const [token, setToken] = useState('');
+  const [name, setName] = useState(null);
+  const [bio, setBio] = useState(null);
+  const [image, setImage] = useState(null);
 
   const getData = async () => {
     try {
-      setToken( await AsyncStorage.getItem('@storage_Key'));
+      setName( await AsyncStorage.getItem('@Name'));
+      setBio( await AsyncStorage.getItem('@bio'));
+      setImage( await AsyncStorage.getItem('@image'));
     } catch(e) {
       console.log(e);
     }
@@ -26,17 +30,22 @@ export default function home() {
         }}>
         <View>
           <StatusBar style="auto" />
-          <View style={styles.top}>
+                <View style={styles.top}>
+                  {image && <Image
+                    style={{width: 135, height: 135, borderRadius: 400/ 2}} 
+                    source={{uri : `http://192.168.1.108:8000${image}`}}
+                  />}
+                {name && <Text style={styles.coverName}> {name} </Text>}
+              </View >
+            <Text style={styles.hr}></Text>
+            
+            {bio && <Text style={styles.bio}>{bio}</Text>}
             <Image
-              style={{width: 135, height: 135, borderRadius: 400/ 2}} 
-              source={profilePic}
-            />
-            <Text  > Full Name </Text>
-          </View>
-          <View>
-              <Text> this is home { token }</Text>
-          </View>
-        </View>
+                    style={styles.logoimage} 
+                    source={{uri : `http://192.168.1.108:8000/image/sf.png`}}
+                  />
+            <View style={styles.hr} /></View>
+
       </TouchableWithoutFeedback>
     );
   }
@@ -46,9 +55,47 @@ export default function home() {
     top: {
       marginTop: 10,
       display: "flex",
+      alignItems: "center",
       flexDirection: "row"
       
     },
+    coverName: {
+      color: '#f48fb1',
+      fontSize: 28,
+      fontWeight: 'bold',
+      paddingBottom: 2,
+      marginLeft: 15,
+      fontStyle: 'italic',
+    },
+    bio:{
+      color: 'black',
+      textAlign:"center",
+      color: "#FFC0CB",
+      fontSize: 20,
+      fontWeight: 'bold',
+      paddingBottom: 2,
+      marginLeft: 15,
+      fontStyle: 'italic',
+    },
+    hr:{
+      borderBottomColor: '#c48b9f',
+      borderBottomWidth: 1,
+      marginTop:10,
+      marginLeft: 50,
+      marginRight: 50,
+    },
+    logoimage:{
+      marginTop:50,
+      marginBottom:50,
+      marginLeft:70,
+      alignContent:"center",
+      alignItems: "center",
+
+      width: 250, 
+      height: 250, 
+      borderRadius: 200/ 2,
+    },
+    
 
    
 

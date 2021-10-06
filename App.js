@@ -7,6 +7,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import BottomTab from './src/tabs/bottomTab';
 import login from './src/screens/login'
 import signup from './src/screens/signup';
+import profile from './src/screens/profile';
 
 const MyTheme = {
   ...DefaultTheme,
@@ -25,6 +26,7 @@ export default function App() {
     <Stack.Navigator initialRouteName = "Login">
       <Stack.Screen name="Login" component={login} />
       <Stack.Screen name="Signup" component={signup} />
+      <Stack.Screen name="Profile" component={profile} />
       <Stack.Screen name="BottomTab" 
           component={BottomTab}
           options={{
