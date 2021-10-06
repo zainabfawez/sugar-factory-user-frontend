@@ -4,7 +4,6 @@ import {StyleSheet, Text, View, TextInput, TouchableOpacity, TouchableWithoutFee
 import main from '../../assets/main.png'; 
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { StackActions, NavigationActions } from 'react-navigation';
 import BASE_API_URL from '../services/api/BaseUrl';
 
 
@@ -12,8 +11,6 @@ export default function login( { navigation } ) {
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
   const [bad_credentials, setidBadCredentials] = useState(null);
-
- 
 
   const pressLogin = async () => {
     try {
@@ -26,11 +23,7 @@ export default function login( { navigation } ) {
       await AsyncStorage.setItem('@bio', res.data['user']['bio']);
       await AsyncStorage.setItem('@image', res.data['user']['p_path']);
       setidBadCredentials(null);
-      // navigation.navigate('BottomTab');
-      const resetAction = navigation.reset({
-        index: 0,
-        routes: [{ name: 'BottomTab' }],
-      });
+      navigation.navigate('BottomTab');
     } catch(err) {
       setidBadCredentials(1);
       console.log(err);

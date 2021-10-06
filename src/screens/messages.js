@@ -79,15 +79,10 @@ export default function search( {navigation}) {
 
         } catch(err) {
           console.log(err);
-      console.log("kbos");
 
         }
-        console.log(reply);
         console.log(text);
-
       }
-      console.log("kbos");
-      
     }
 
     return(
@@ -109,7 +104,7 @@ export default function search( {navigation}) {
 
             </View>}
 
-          {emptydata && <Text style={styles.nothingText}> Nothing to show To check for new messages!</Text>}
+          {emptydata && <Text style={styles.nothingText}> Nothing to show.. Refresh to check for new messages!</Text>}
          <ScrollView contentContainerStyle={styles.contentContainer}> 
           {data && <Message data={data} ignorebtn={ignorebtn}  replybtn={replybtn}/>}
           </ScrollView >
