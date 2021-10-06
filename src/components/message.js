@@ -4,7 +4,17 @@ import {StyleSheet, Text, View, TextInput, TouchableOpacity, TouchableWithoutFee
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import profilePic from '../../assets/profilePic.png'; 
 //import profile from "../screens/profile";
+
+
 export default function SearchResults(props) {
+
+  const replyTo = (id)=>{
+    {props.replybtn(id)};
+  }
+  const ignoreTo = (id)=>{
+    {props.ignorebtn(id)};
+  }
+
     return(
       <View style={styles.container}>
          {props.data.map((item) => (
@@ -13,10 +23,10 @@ export default function SearchResults(props) {
               <Text style={styles.text}>{item.first_name} {item.last_name} </Text>
             <View style={styles.inputView}>
             <Text style={styles.text2}>{item.body}</Text>
-                <TouchableOpacity style={styles.Btn1} onPress={() => { navigation.navigate('profile'); } }>
-                      <Text style={styles.btnText}>Reply </Text>
+                <TouchableOpacity style={styles.Btn1} onPress={()=> replyTo(item.id)}>
+                      <Text style={styles.btnText}  onPress={()=> replyTo(item.id)}> Reply </Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.Btn2} onPress={() => { navigation.navigate('profile'); } }>
+                <TouchableOpacity style={styles.Btn2} onPress={()=> ignoreTo(item.id)}>
                       <Text style={styles.btnText}>Ignore </Text>
                 </TouchableOpacity>
             </View> 
@@ -95,7 +105,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   row: {
-    marginTop: 10,
+    marginTop: 20,
     flexDirection: "row",
     justifyContent: "flex-end",
     marginRight: 20,

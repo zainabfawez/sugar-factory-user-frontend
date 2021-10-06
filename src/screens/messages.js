@@ -9,66 +9,109 @@ import BASE_API_URL from '../services/api/BaseUrl';
 
 const pic = profilePic;
 export default function search( {navigation}) {
-  const [name, setName] = useState(null);
+  const [text, setText] = useState(null);
   const [token, setToken] = useState('');
   const [data, setData] = useState(null);
   const [emptydata, setEmptyData] = useState(null);
   const [reply, setReply] = useState(null);
-  const getData = async () => {
-    try {
-    } catch(e) {
-      console.log(e);
-    }
-  }
   useEffect( () => {
-    getData();
     displayMsg();
     },[]);
+
   const displayMsg = async () => {
-      // console.log(token);
       try {
-        const res = await  axios.get(`${BASE_API_URL}/api/user/get-messages`,
+        const res1 = await  axios.get(`${BASE_API_URL}/api/user/get-messages`,
         {headers:{
           'Authorization' : `Bearer ${await AsyncStorage.getItem('@storage_Key')}`
         }}
         );
-        if(res.data.hasOwnProperty('status')){
-          setEmptyData("No results found");
+        if(res1.data.length==0){
+          setEmptyData("1");
           setData(null);
         }else{
-            setData(res.data);
+            setData(res1.data);
             setEmptyData(null);
         }
       } catch(err) {
-        console.log(err);
+        // console.log(err);
       }
     }
 
     const refresh = ()=>{
-      getData();
       displayMsg();
+    }
+
+    const ignorebtn = async(id) =>{
+      try {
+        const res = await  axios.post(`${BASE_API_URL}/api/user/set-message-as-read`,{
+          "message_id" : id
+        },
+        {headers:{
+          'Authorization' : `Bearer ${await AsyncStorage.getItem('@storage_Key')}`
+        }}
+        );
+        console.log(res.data);
+      } catch(err) {
+        console.log(err);
+      }
+      displayMsg();
+    }
+
+    const replybtn = (id) =>{
+      setReply(id);
+      console.log(reply);
+    }
+
+    const send = async () =>{
+      if(text){
+        try {
+          const res = await  axios.post(`${BASE_API_URL}/api/user/send-message`,{
+            "receiver_id" : reply,
+            "body": text
+          },
+          {headers:{
+            'Authorization' : `Bearer ${await AsyncStorage.getItem('@storage_Key')}`
+          }}
+          );
+          console.log(res.data);
+          setReply(null);
+        ignorebtn(reply);
+
+        } catch(err) {
+          console.log(err);
+      console.log("kbos");
+
+        }
+        console.log(reply);
+        console.log(text);
+
+      }
+      console.log("kbos");
+      
     }
 
     return(
       <View style={ styles.container}>
-        <TouchableOpacity style={styles.loginBtn} onPress={()=> refresh()}>
+          {!emptydata && <Text style={styles.Header}> Your Messages!</Text>}
+        {emptydata && <TouchableOpacity style={styles.loginBtn} onPress={()=> refresh()}>
               <Text style={styles.loginText} >Refresh Page</Text>
-            </TouchableOpacity>
+            </TouchableOpacity>}
           {reply &&  <View style={styles.inputViewHalf}>
               <TextInput
                 style={styles.TextInput}
                 placeholder="Enter text"
-                placeholderTextColor="grey"             
+                placeholderTextColor="grey"     
+                onChangeText={(text) => setText(text)}        
               />
-        <TouchableOpacity style={styles.loginBtn2} onPress={()=> refresh()}>
+        <TouchableOpacity style={styles.loginBtn2} onPress={()=> send()}>
               <Text  >Send</Text>
             </TouchableOpacity>
 
             </View>}
 
-          {emptydata && <Text style={styles.nothingText}> Nothing to show </Text>}
+          {emptydata && <Text style={styles.nothingText}> Nothing to show To check for new messages!</Text>}
          <ScrollView contentContainerStyle={styles.contentContainer}> 
-          {data && <Message data={data} />}
+          {data && <Message data={data} ignorebtn={ignorebtn}  replybtn={replybtn}/>}
           </ScrollView >
       </View>
     );
@@ -171,6 +214,8 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     flexDirection:"row",
     marginLeft:35,
+    marginTop:50,
+    marginBottom:-20,
   },
   loginBtn2: {
     width: "50%",
@@ -183,4 +228,12 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFC0CB",
     marginBottom:15,
 },
+Header:{
+  fontWeight: 'bold',
+  alignItems: "center",
+  justifyContent: "center",
+  textAlign: "center",
+  marginTop: 30,
+  marginBottom:-10,
+}
 });
