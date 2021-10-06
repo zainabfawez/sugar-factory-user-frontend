@@ -43,7 +43,7 @@ export default function profile({route, navigation }) {
               {userData &&<Text style={styles.text}>Has: {userData.net_worth}  {userData.currency} </Text>}
             </View>
             <TouchableOpacity style={styles.Btn}  >
-                <Text style={styles.btnText} >Favorite </Text>
+                <Text style={styles.btnText} onPress={()=> navigation.navigate('Home')}>Favorite </Text>
             </TouchableOpacity>
 
          

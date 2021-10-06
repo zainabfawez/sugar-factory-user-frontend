@@ -13,7 +13,9 @@ import editProfile from '../screens/editProfile';
 
 
 
-export default function BottomTab(){
+export default function BottomTab( { navigation }){
+
+	
 
 	const Tab = createMaterialBottomTabNavigator();
 

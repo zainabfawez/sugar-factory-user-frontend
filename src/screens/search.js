@@ -8,18 +8,21 @@ import axios from 'axios';
 
 
 
-export default function search( {navigation}) {
+export default function search( { navigation}) {
   const [name, setName] = useState(null);
   const [data, setData] = useState(null);
   const [emptydata, setEmptyData] = useState(null);
-  
+  const [fav, setFav] = useState(null);
+ 
    
     const goToUser = (id) => {
       {navigation.navigate('Profile', { userId: id })}
   }
 
+
   const pressSearch = async () => {
     if(name){
+      setFav(null);
       try {
         const res = await  axios.post('http://192.168.1.108:8000/api/user/search', 
         {
@@ -66,7 +69,6 @@ export default function search( {navigation}) {
             <Text style={styles.loginText}>Search</Text>
             </TouchableOpacity>
             </TouchableWithoutFeedback>
-
           {emptydata && <Text style={styles.nothingText}> Nothing to show </Text>}
          <ScrollView contentContainerStyle={styles.contentContainer}> 
           {data && <SearchResults data={data} goToUser={goToUser}/>}

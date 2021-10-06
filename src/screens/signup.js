@@ -1,34 +1,69 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
-import main from '../../assets/main.png'; 
-import {StyleSheet, Text, View, TextInput, TouchableOpacity, TouchableWithoutFeedback, Keyboard, Image, ScrollView } from "react-native";
- 
+import main from '../../assets/main.png';
+import {Picker} from '@react-native-picker/picker';
+import DateTimePicker from '@react-native-community/datetimepicker';
+import {
+  StyleSheet,
+  Text, 
+  View, 
+  TextInput, 
+  TouchableOpacity, 
+  TouchableWithoutFeedback, 
+  Keyboard, 
+  Image, 
+  Button,
+  Platform,
+  ScrollView } from "react-native";
+
+
 export default function signup() {
 
-  const [first_name, setFirstName] = useState({ value: '' })
-  const [last_name, setLastName] = useState({ value: ''})
-  const [email, setEmail] = useState({ value: ''})
-  const [password, setPassword] = useState({ value: ''})
-  const [confirmPassword, setConfirmPassword] = useState({ value: ''})
- 
+  const [selectedCurrency, setSelectedCurrency] = useState("USD");
+  const [selectedInterest, setSelectedInterest] = useState("Male");
+  const [selectedGender, setSelectedGender] = useState("Female");
+
+  const [date, setDate] = useState(new Date());
+  const [mode, setMode] = useState('date');
+  const [show, setShow] = useState(true);
+
+  const onChange = (event, selectedDate) => {
+    const currentDate = selectedDate;
+    setShow(Platform.OS === 'ios');
+    setDate(currentDate);
+  };
+
+  const showMode = (currentMode) => {
+    setShow(true);
+    setMode(currentMode);
+  };
+
+  const showDatepicker = () => {
+    showMode('date');
+  };
+
+
+
+
   return (
     <TouchableWithoutFeedback onPress={()=> {
       Keyboard.dismiss();
     }}>
       <ScrollView>
+        
         <View style={styles.container}>
           <StatusBar style="auto" />
           <Image
             style = {{width: 300, height: 300}}
             source={main}
           />
+
           <View style={styles.row}>
             <View style={styles.inputViewHalf}>
               <TextInput
                 style={styles.TextInput}
                 placeholder="First Name"
-                placeholderTextColor="grey"
-                onChangeText={(first_name) => setFirstName(first_name)}
+                placeholderTextColor="grey"             
               />
             </View>
 
@@ -36,8 +71,7 @@ export default function signup() {
               <TextInput
                 style={styles.TextInput}
                 placeholder="Last Name"
-                placeholderTextColor="grey"
-                onChangeText={(last_name) => setLastName(last_name)}
+                placeholderTextColor="grey"           
               />
             </View>
           </View>
@@ -46,8 +80,7 @@ export default function signup() {
             <TextInput
               style={styles.TextInput}
               placeholder="Email"
-              placeholderTextColor="grey"
-              onChangeText={(email) => setEmail(email)}
+              placeholderTextColor="grey"      
             />
           </View>
     
@@ -56,8 +89,7 @@ export default function signup() {
               style={styles.TextInput}
               placeholder="Password"
               placeholderTextColor="grey"
-              secureTextEntry={true}
-              onChangeText={(password) => setPassword(password)}
+              secureTextEntry={true}            
             />
           </View>
 
@@ -67,14 +99,108 @@ export default function signup() {
               placeholder="Confirm Password"
               placeholderTextColor="grey"
               secureTextEntry={true}
-              onChangeText={(ConfirmPassword) => setConfirmPassword(confirmPassword)}
             />
           </View>
-          
+
+          <View>
+            <View>
+            </View>
+            {/* {show && (
+              <DateTimePicker style={styles.data}
+                testID="dateTimePicker"
+                value={date}
+                mode={mode}
+                display="date"
+                onChange={onChange}
+              />
+            )} */}
+          </View>
+      
+       
+          <View style={styles.row}>
+            <Text style={styles.textDrop}> Gender:        </Text>
+
+            <View style={styles.inputViewHalfDropC}>
+              <Picker style={styles.inputgen}
+                  selectedValue={selectedGender}
+                  onValueChange={(itemValue, itemIndex) =>
+                    setSelectedGender(itemValue)
+                  }>
+                  <Picker.Item label="Male" value="Male" />
+                  <Picker.Item label="Female" value="Female" />
+              </Picker>
+              </View>
+          </View>
+
+          <View style={styles.row}>
+            <Text style={styles.textDrop}> Interested in: </Text>
+
+            <View style={styles.inputViewHalfDropC}>
+              <Picker
+                  selectedValue={selectedInterest}
+                  onValueChange={(itemValue, itemIndex) =>
+                    setSelectedInterest(itemValue)
+                  }>
+                  <Picker.Item label="Male" value="Male" />
+                  <Picker.Item label="Female" value="Female" />
+              </Picker>
+              </View>
+          </View>
+        
+        
     
-          <TouchableOpacity style={styles.loginBtn}>
-            <Text style={styles.loginText}>sign up</Text>
-          </TouchableOpacity>
+
+          <View style={styles.inputView}>
+            <TextInput
+              style={styles.TextInput}
+              placeholder="Nationality"
+              placeholderTextColor="grey"
+            />
+          </View>
+
+          <View style={styles.row}>
+            <View style={styles.inputViewHalf}>
+              <TextInput
+                style={styles.TextInput}
+                placeholder="height"
+                placeholderTextColor="grey"             
+              />
+            </View>
+
+            <View style={styles.inputViewHalf}>
+              <TextInput
+                style={styles.TextInput}
+                placeholder="weight"
+                placeholderTextColor="grey"           
+              />
+            </View>
+          </View>
+
+          <View style={styles.row}>
+            <View style={styles.inputViewHalf}>
+              <TextInput
+                style={styles.TextInput}
+                placeholder="wealth"
+                placeholderTextColor="grey"             
+              />
+            </View>
+
+            <View style={styles.inputViewHalfDropC}>
+            <Picker
+                selectedValue={selectedCurrency}
+                onValueChange={(itemValue, itemIndex) =>
+                  setSelectedCurrency(itemValue)
+                }>
+                <Picker.Item label="USD" value="USD" />
+                <Picker.Item label="LBP" value="LBP" />
+            </Picker>
+            </View>
+          </View>
+
+          
+            <TouchableOpacity style={styles.loginBtn}>
+              <Text style={styles.loginText}>SIGN UP</Text>
+            </TouchableOpacity>
         </View>
         </ScrollView>
     </TouchableWithoutFeedback>
@@ -89,6 +215,9 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
+    paddingBottom: 15,
+    padding: 5
+    
   },
  
   image: {
@@ -100,7 +229,7 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     borderColor : "#FFC0CB",
     borderWidth : 1,
-    width: "70%",
+    width: "86%",
     height: 45,
     marginBottom: 20,
   },
@@ -110,7 +239,7 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     borderColor : "#FFC0CB",
     borderWidth : 1,
-    width: "35%",
+    width: "43%",
     height: 45,
     marginBottom: 20,
   },
@@ -129,7 +258,7 @@ const styles = StyleSheet.create({
   },
  
   loginBtn: {
-    width: "80%",
+    width: "92%",
     borderRadius: 25,
     height: 50,
     alignItems: "center",
@@ -141,8 +270,51 @@ const styles = StyleSheet.create({
   
   row: {
     marginTop: 10,
-    display: "flex",
-    flexDirection: "row"
+    flexDirection: "row",
+    justifyContent: "flex-end"
   },
+
+  loginText: {
+    color: '#fff',
+    fontSize: 20,
+  },
+
+  textDrop:{
+      color: "grey",
+      margin: 10,
+      marginRight: 40,
+      flex: 0.7,
+     
+  },
+
+  
+  inputViewHalfDropC: {
+    paddingBottom: 180,
+
+    backgroundColor: "#fff",
+    borderRadius: 30,
+    borderColor : "#FFC0CB",
+    borderWidth : 1,
+    width: "43%",
+    height: 45,
+    marginBottom: 20,
+  },
+  inputgene: {
+    paddingBottom: 100,
+    paddingLeft: 100,
+    alignItems: "center",
+
+    backgroundColor: "#fff",
+    borderRadius: 30,
+    borderColor : "#FFC0CB",
+    borderWidth : 1,
+    width: "43%",
+    height: 45,
+    marginBottom: 20,
+  },
+  data:{
+    width: 100,
+    height: 40,
+  }
 
 });

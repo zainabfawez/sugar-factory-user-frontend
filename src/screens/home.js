@@ -3,11 +3,13 @@ import React, { useState, useEffect } from "react";
 import {StyleSheet, Text, View, TextInput, TouchableOpacity, TouchableWithoutFeedback, Image, Keyboard } from "react-native";
 import sf from '../../assets/sf.png'; 
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { StackActions, NavigationActions } from 'react-navigation';
 
-export default function home() {
+export default function home({ navigation }) {
   const [name, setName] = useState(null);
   const [bio, setBio] = useState(null);
   const [image, setImage] = useState(null);
+
 
   const getData = async () => {
     try {
