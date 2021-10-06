@@ -105,7 +105,7 @@ export default function signup() {
           <View>
             <View>
             </View>
-            {/* {show && (
+            {show && (
               <DateTimePicker style={styles.data}
                 testID="dateTimePicker"
                 value={date}
@@ -113,7 +113,7 @@ export default function signup() {
                 display="date"
                 onChange={onChange}
               />
-            )} */}
+            )}
           </View>
       
        

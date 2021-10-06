@@ -28,6 +28,30 @@ export default function profile({route, navigation }) {
       }
 
     }
+
+    const onFav = async (id) =>{
+      // navigation.navigate('Home');
+      try {
+        const rest = await  axios.post('http://192.168.1.108:8000/api/user/add-favorite', 
+        {
+          "user_id" : id
+        },
+        {headers:{
+          'Authorization' : `Bearer ${await AsyncStorage.getItem('@storage_Key')}`
+        }}
+        );
+        if(rest.data.hasOwnProperty('status')){
+          navigation.navigate('Home');
+        }
+      } catch(e) {
+        console.log(e);
+        console.log("e");
+
+      }
+
+
+    }
+
     useEffect(() => {
         getData();
         }, [])
@@ -43,7 +67,7 @@ export default function profile({route, navigation }) {
               {userData &&<Text style={styles.text}>Has: {userData.net_worth}  {userData.currency} </Text>}
             </View>
             <TouchableOpacity style={styles.Btn}  >
-                <Text style={styles.btnText} onPress={()=> navigation.navigate('Home')}>Favorite </Text>
+                <Text style={styles.btnText} onPress={()=> onFav(userData.id)}>Favorite </Text>
             </TouchableOpacity>
 
          

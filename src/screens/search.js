@@ -33,7 +33,6 @@ export default function search( { navigation}) {
         }}
         );
         if(res.data.hasOwnProperty('status')){
-          console.log("No results found");
           setEmptyData("No results found");
           setData(null);
         }else{
