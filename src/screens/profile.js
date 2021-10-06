@@ -4,6 +4,8 @@ import {StyleSheet, Text, View, TextInput, TouchableOpacity, TouchableWithoutFee
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 import { RadioButton } from 'react-native-paper';
+import BASE_API_URL from '../services/api/BaseUrl';
+
 
 
 export default function profile({route, navigation }) {
@@ -14,7 +16,7 @@ export default function profile({route, navigation }) {
 
     const getData = async () => {
       try {
-        const res = await  axios.post('http://192.168.1.108:8000/api/user/get-user', 
+        const res = await  axios.post(`${BASE_API_URL}/api/user/get-user`, 
         {
           "id" : userId
         },
@@ -32,7 +34,7 @@ export default function profile({route, navigation }) {
     const onFav = async (id) =>{
       // navigation.navigate('Home');
       try {
-        const rest = await  axios.post('http://192.168.1.108:8000/api/user/add-favorite', 
+        const rest = await  axios.post(`${BASE_API_URL}/api/user/add-favorite`, 
         {
           "user_id" : id
         },

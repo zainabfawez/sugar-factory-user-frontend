@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import main from '../../assets/main.png';
 import {Picker} from '@react-native-picker/picker';
 import DateTimePicker from '@react-native-community/datetimepicker';
+import BASE_API_URL from '../services/api/BaseUrl';
 import {
   StyleSheet,
   Text, 

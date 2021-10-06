@@ -5,6 +5,7 @@ import main from '../../assets/main.png';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { StackActions, NavigationActions } from 'react-navigation';
+import BASE_API_URL from '../services/api/BaseUrl';
 
 
 export default function login( { navigation } ) {
@@ -16,7 +17,7 @@ export default function login( { navigation } ) {
 
   const pressLogin = async () => {
     try {
-      const res = await  axios.post('http://192.168.1.108:8000/api/login', {
+      const res = await  axios.post(`${BASE_API_URL}/api/login`, {
         "email" : email,
         "password":password
       });

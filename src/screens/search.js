@@ -4,6 +4,8 @@ import {StyleSheet, View, TextInput, FlatList, TouchableOpacity, Text,Keyboard ,
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import SearchResults from "../components/searchResults";
 import axios from 'axios';
+import BASE_API_URL from '../services/api/BaseUrl';
+
 
 
 
@@ -24,7 +26,7 @@ export default function search( { navigation}) {
     if(name){
       setFav(null);
       try {
-        const res = await  axios.post('http://192.168.1.108:8000/api/user/search', 
+        const res = await  axios.post(`${BASE_API_URL}/api/user/search`, 
         {
           "name" : name
         },

@@ -4,6 +4,8 @@ import {StyleSheet, Text, View, TextInput, TouchableOpacity, TouchableWithoutFee
 import sf from '../../assets/sf.png'; 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { StackActions, NavigationActions } from 'react-navigation';
+import BASE_API_URL from '../services/api/BaseUrl';
+
 
 export default function home({ navigation }) {
   const [name, setName] = useState(null);
@@ -35,7 +37,7 @@ export default function home({ navigation }) {
                 <View style={styles.top}>
                   {image && <Image
                     style={{width: 135, height: 135, borderRadius: 400/ 2}} 
-                    source={{uri : `http://192.168.1.108:8000${image}`}}
+                    source={{uri : `${BASE_API_URL}${image}`}}
                   />}
                 {name && <Text style={styles.coverName}> {name} </Text>}
               </View >
@@ -44,7 +46,7 @@ export default function home({ navigation }) {
             {bio && <Text style={styles.bio}>{bio}</Text>}
             <Image
                     style={styles.logoimage} 
-                    source={{uri : `http://192.168.1.108:8000/image/sf.png`}}
+                    source={{uri : `${BASE_API_URL}/image/sf.png`}}
                   />
             <View style={styles.hr} /></View>
 
