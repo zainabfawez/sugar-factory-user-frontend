@@ -17,7 +17,7 @@ export default function SearchResults(props) {
          {props.data.map((item) => (
       <View  key={item.id}>
             <View  style={styles.row}>
-              <Text style={styles.text}>Data: </Text>
+              <Text style={styles.text}>     </Text>
             <View >
             <Text style={styles.text2}>{item.body}</Text>
             

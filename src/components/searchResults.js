@@ -8,7 +8,6 @@ import BASE_API_URL from '../services/api/BaseUrl';
 
 export default function SearchResults(props) {
 
-  console.log(`http://192.168.1.108:8000`)
 
   const goTo = (id)=>{
     {props.goToUser(id)};

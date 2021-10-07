@@ -8,6 +8,7 @@ import BottomTab from './src/tabs/bottomTab';
 import login from './src/screens/login'
 import signup from './src/screens/signup';
 import profile from './src/screens/profile';
+import home from './src/screens/home';
 
 const MyTheme = {
   ...DefaultTheme,
@@ -27,6 +28,7 @@ export default function App() {
       <Stack.Screen name="Login" component={login} />
       <Stack.Screen name="Signup" component={signup} />
       <Stack.Screen name="Profile" component={profile} />
+      <Stack.Screen name="Home" component={home} />
       <Stack.Screen name="BottomTab" 
           component={BottomTab}
           options={{

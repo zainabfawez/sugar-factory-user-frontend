@@ -26,7 +26,7 @@ export default function home({ navigation }) {
 
   useEffect( () => {
     getData();
-    }, []);
+    }, [navigation]);
 
 
     return (
@@ -35,7 +35,9 @@ export default function home({ navigation }) {
         }}>
         <View>
           <StatusBar style="auto" />
-                <View style={styles.top}>
+                <View style={styles.top}
+                    onPress = {()=>getData()}
+                    >
                   {image && <Image
                     style={{width: 135, height: 135, borderRadius: 400/ 2}} 
                     source={{uri : `${BASE_API_URL}${image}`}}
@@ -49,7 +51,12 @@ export default function home({ navigation }) {
                     style={styles.logoimage} 
                     source={{uri : `${BASE_API_URL}/image/sf.png`}}
                   />
+                   <TouchableOpacity style={styles.up} onPress = {getData} >
+          <Text style={styles.up} >Upload Image</Text>
+        </TouchableOpacity>
             <View style={styles.hr} /></View>
+
+           
 
       </TouchableWithoutFeedback>
     );
@@ -100,7 +107,9 @@ export default function home({ navigation }) {
       height: 250, 
       borderRadius: 200/ 2,
     },
-    
+    up:{
+      color: "#fff",
+    }
 
    
 
