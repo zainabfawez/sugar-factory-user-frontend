@@ -17,10 +17,9 @@ export default function search( { navigation}) {
   const [fav, setFav] = useState(null);
  
    
-    const goToUser = (id) => {
+  const goToUser = (id) => {
       {navigation.navigate('Profile', { userId: id })}
   }
-
 
   const pressSearch = async () => {
     if(name){

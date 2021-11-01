@@ -40,7 +40,6 @@ export default function login( { navigation } ) {
     }}>
     <View style={styles.container}>
       
- 
       <StatusBar style="auto" />
       <Image
         style = {{width: 300, height: 300}}

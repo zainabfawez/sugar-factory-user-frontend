@@ -27,7 +27,7 @@ export default function App() {
     <Stack.Navigator initialRouteName = "Login">
       <Stack.Screen name="Login" component={login} />
       <Stack.Screen name="Signup" component={signup} />
-      <Stack.Screen name="Profile" component={profile} />
+      <Stack.Screen name="Profile" component={profile} /> {/*might be useless*/}
       <Stack.Screen name="Home" component={home} />
       <Stack.Screen name="BottomTab" 
           component={BottomTab}
